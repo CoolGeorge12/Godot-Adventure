@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://bvvgbvq1cy88m"]
+[gd_scene load_steps=9 format=4 uid="uid://bvvgbvq1cy88m"]
 
 [ext_resource type="PackedScene" uid="uid://csh7yqycjeuqm" path="res://Scenes/Player/player.tscn" id="1_2p8i2"]
 [ext_resource type="Texture2D" uid="uid://c7fud4ftwv62a" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetFloor.png" id="1_l6yvh"]
@@ -768,6 +768,8 @@ texture = ExtResource("2_04h35")
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_kr7le")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_04h35"]
+
 [node name="GameScene" type="Node2D"]
 
 [node name="GrassLayer" type="TileMapLayer" parent="."]
@@ -787,3 +789,9 @@ tile_set = SubResource("TileSet_oi8ly")
 
 [node name="Camera2D" type="Camera2D" parent="ObstacleLayer/Player"]
 zoom = Vector2(5, 5)
+
+[node name="SceneEntrance" type="Area2D" parent="."]
+position = Vector2(-45, -11)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneEntrance"]
+shape = SubResource("RectangleShape2D_04h35")
