@@ -30,6 +30,10 @@ folder_colors={
 "res://Scenes/": "blue"
 }
 
+[global_group]
+
+pushable=""
+
 [input]
 
 move_right={
