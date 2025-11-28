@@ -15,6 +15,14 @@ run/main_scene="uid://bvvgbvq1cy88m"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SceneManager="*res://Scenes/SceneManager/scene_manager.tscn"
+
+[display]
+
+window/stretch/mode="canvas_items"
+
 [file_customization]
 
 folder_colors={
