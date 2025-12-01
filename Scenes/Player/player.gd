@@ -11,30 +11,38 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	
+	move_player()
+	
+	push_blocks()
+	
+	move_and_slide()
+
+func move_player():
 	var move_vector: Vector2 = Input.get_vector("move_left","move_right","move_up","move_down")
 	
 	velocity = move_vector * move_speed
 	
 	if velocity.x > 0:
 		$AnimatedSprite2D.play("move_right")
+		$InteractArea2D.position = Vector2(5, 2)
 	
 	elif velocity.x < 0:
 		$AnimatedSprite2D.play("move_left")
+		$InteractArea2D.position = Vector2(-5, 2)
 	
 	elif velocity.y > 0:
 		$AnimatedSprite2D.play("move_down")
+		$InteractArea2D.position = Vector2(0, 8)
 	
 	elif velocity.y < 0:
 		$AnimatedSprite2D.play("move_up")
+		$InteractArea2D.position = Vector2(0, -4)
 	
 	else:
 		$AnimatedSprite2D.stop()
-	
-	
-	# Get the last collision
-	# Check if its the block
-	# If it is the block, push it
-	
+
+func push_blocks():
 	var collision: KinematicCollision2D = get_last_slide_collision()
 	if collision:
 		
@@ -44,5 +52,11 @@ func _physics_process(delta: float) -> void:
 			var collision_normal: Vector2 = collision.get_normal()
 			
 			collider_node.apply_central_force(-collision_normal * push_strength)
-	
-	move_and_slide()
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("interactable"):
+		body.can_interact = true
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body.is_in_group("interactable"):
+		body.can_interact = false

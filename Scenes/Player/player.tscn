@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://csh7yqycjeuqm"]
+[gd_scene load_steps=22 format=3 uid="uid://csh7yqycjeuqm"]
 
 [ext_resource type="Script" uid="uid://djt2vj0jinkcp" path="res://Scenes/Player/player.gd" id="1_a3d8c"]
 [ext_resource type="Texture2D" uid="uid://dxk3653426pt6" path="res://Ninja Adventure - Asset Pack/Actor/Characters/NinjaRed2/SeparateAnim/Walk.png" id="2_a3d8c"]
@@ -142,6 +142,9 @@ animations = [{
 radius = 5.0
 height = 12.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a3d8c"]
+size = Vector2(8, 8)
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 7
@@ -156,3 +159,13 @@ animation = &"move_down"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_ft8w5")
+
+[node name="InteractArea2D" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea2D"]
+shape = SubResource("RectangleShape2D_a3d8c")
+debug_color = Color(0, 0.6404583, 0.35429958, 0.41960785)
+
+[connection signal="body_entered" from="InteractArea2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="InteractArea2D" to="." method="_on_area_2d_body_exited"]

@@ -868,10 +868,10 @@ position = Vector2(135, -74)
 position = Vector2(-186, -193)
 
 [node name="Block" parent="." instance=ExtResource("7_8ho00")]
-position = Vector2(-228, -88)
+position = Vector2(-232, -88)
 
 [node name="Block2" parent="." instance=ExtResource("7_8ho00")]
-position = Vector2(-232, -23)
+position = Vector2(-232, -24)
 
 [node name="Block3" parent="." instance=ExtResource("5_odg1s")]
 position = Vector2(105, -8)
