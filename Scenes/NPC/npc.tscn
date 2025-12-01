@@ -47,10 +47,10 @@ texture = ExtResource("3_0s07e")
 
 [node name="NPCIcon" type="TextureRect" parent="CanvasLayer/DialougeBoxTexture" groups=["interactable"]]
 layout_mode = 0
-offset_left = 5.945946
-offset_top = 14.054055
-offset_right = 45.945946
-offset_bottom = 54.054054
+offset_left = 5.4054055
+offset_top = 13.243244
+offset_right = 45.405407
+offset_bottom = 53.243244
 texture = ExtResource("4_aqj1y")
 
 [node name="DialougeLabel" type="Label" parent="CanvasLayer"]
