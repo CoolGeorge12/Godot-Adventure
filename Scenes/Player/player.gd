@@ -6,6 +6,7 @@ class_name Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	update_treasure_label()
 	if SceneManager.player_spawn_position != Vector2(0, 0):
 		position = SceneManager.player_spawn_position
 
@@ -15,6 +16,8 @@ func _physics_process(delta: float) -> void:
 	move_player()
 	
 	push_blocks()
+	
+	update_treasure_label()
 	
 	move_and_slide()
 
@@ -52,6 +55,10 @@ func push_blocks():
 			var collision_normal: Vector2 = collision.get_normal()
 			
 			collider_node.apply_central_force(-collision_normal * push_strength)
+
+func update_treasure_label():
+	var treasure_amount: int = SceneManager.opened_chests.size()
+	%TreasureLabel.text = str(treasure_amount)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("interactable"):
