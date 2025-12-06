@@ -20,7 +20,7 @@ func open_chest():
 	$Sprite2D.visible = true
 	$Timer.start()
 	SceneManager.opened_chests.append(chest_name)
-	print(SceneManager.opened_chests)
+	$AudioStreamPlayer2D.play()
 
 
 func _on_timer_timeout() -> void:

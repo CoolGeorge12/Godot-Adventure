@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://bvvgbvq1cy88m"]
+[gd_scene load_steps=27 format=4 uid="uid://bvvgbvq1cy88m"]
 
 [ext_resource type="PackedScene" uid="uid://csh7yqycjeuqm" path="res://Scenes/Player/player.tscn" id="1_2p8i2"]
 [ext_resource type="Texture2D" uid="uid://c7fud4ftwv62a" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetFloor.png" id="1_l6yvh"]
@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://cpoqu3g0o42y" path="res://Ninja Adventure - Asset Pack/Actor/Characters/NinjaGreen/Faceset.png" id="9_6qy3m"]
 [ext_resource type="Texture2D" uid="uid://egu74xbpt2jg" path="res://Ninja Adventure - Asset Pack/Actor/Characters/NinjaMageBlack/SpriteSheet.png" id="10_njm7v"]
 [ext_resource type="Texture2D" uid="uid://wgir12je5eqc" path="res://Ninja Adventure - Asset Pack/Actor/Characters/NinjaMageBlack/Faceset.png" id="11_bkvnf"]
+[ext_resource type="PackedScene" uid="uid://dn3c2irpxgk6u" path="res://Scenes/Enemies/slime_enemy.tscn" id="12_rpdpv"]
+[ext_resource type="AudioStream" uid="uid://c3tuxe1bu7mk6" path="res://Ninja Adventure - Asset Pack/Musics/11 - Clearing.ogg" id="14_bkvnf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_04h35"]
 texture = ExtResource("1_l6yvh")
@@ -874,6 +876,9 @@ text = "Mwahahaha!"
 [node name="NameLabel" parent="ObstacleLayer/NPC3/CanvasLayer" index="2"]
 text = "Dark Ninja"
 
+[node name="SlimeEnemy" parent="ObstacleLayer" instance=ExtResource("12_rpdpv")]
+position = Vector2(1, -179)
+
 [node name="LockedDoor" parent="." instance=ExtResource("6_elpgg")]
 position = Vector2(328, 14)
 
@@ -902,6 +907,13 @@ shape = SubResource("RectangleShape2D_nr542")
 position = Vector2(43, -2)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_dc78n")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("14_bkvnf")
+volume_db = -7.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="PuzzleButton" to="LockedDoor" method="_on_puzzle_button_pressed"]
 [connection signal="unpressed" from="PuzzleButton" to="LockedDoor" method="_on_puzzle_button_unpressed"]

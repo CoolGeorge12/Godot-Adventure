@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://d38us1jar0q4v"]
+[gd_scene load_steps=20 format=4 uid="uid://d38us1jar0q4v"]
 
 [ext_resource type="PackedScene" uid="uid://csh7yqycjeuqm" path="res://Scenes/Player/player.tscn" id="1_okyhq"]
 [ext_resource type="PackedScene" uid="uid://dndjy5xr2341g" path="res://Scenes/SceneEntrance/scene_entrance.tscn" id="2_sx8ki"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://16nkxk3p1ars" path="res://Scenes/Switch/switch_puzzle_manager.tscn" id="11_g75ix"]
 [ext_resource type="PackedScene" uid="uid://87uewn3jqokf" path="res://Scenes/Switch/switch.tscn" id="11_nqymn"]
 [ext_resource type="PackedScene" uid="uid://bc6hivy576woy" path="res://Scenes/TreasureChest/treasure_chest.tscn" id="13_x00t5"]
+[ext_resource type="AudioStream" uid="uid://cw4xjwm4njcol" path="res://Ninja Adventure - Asset Pack/Musics/2 - The Cave.ogg" id="14_r5l8u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5fck"]
 size = Vector2(30, 20)
@@ -855,7 +856,7 @@ tile_set = SubResource("TileSet_00mv7")
 
 [node name="TreasureChest3" parent="." instance=ExtResource("13_x00t5")]
 position = Vector2(0, -117)
-chest_name = "chest5"
+chest_name = "chest3"
 
 [node name="SecretWallLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAD8//b/AAAEAAUAAAD8//f/AAAEAAUAAAD8//j/AAAEAAUAAAD8//n/AAAEAAUAAAD8//r/AAAEAAUAAAD8//v/AAAEAAUAAAD9//b/AAAEAAUAAAD9//f/AAAEAAUAAAD9//j/AAAEAAUAAAD9//n/AAAEAAUAAAD9//r/AAAEAAUAAAD9//v/AAAEAAUAAAD+//b/AAAEAAUAAAD+//f/AAAEAAUAAAD+//j/AAAEAAUAAAD+//n/AAAEAAUAAAD+//r/AAAEAAUAAAD+//v/AAAEAAUAAAD+//z/AAADAAYAAAD///b/AAAEAAUAAAD///f/AAAEAAUAAAD///j/AAAEAAUAAAD///n/AAAEAAUAAAD///r/AAAEAAUAAAD///v/AAAEAAUAAAD///z/AAADAAYAAAAAAPb/AAAEAAUAAAAAAPf/AAAEAAUAAAAAAPj/AAAEAAUAAAAAAPn/AAAEAAUAAAAAAPr/AAAEAAUAAAAAAPv/AAAEAAUAAAAAAPz/AAADAAYAAAABAPb/AAAEAAUAAAABAPf/AAAEAAUAAAABAPj/AAAEAAUAAAABAPn/AAAEAAUAAAABAPr/AAAEAAUAAAABAPv/AAAEAAUAAAABAPz/AAADAAYAAAACAPb/AAAEAAUAAAACAPf/AAAEAAUAAAACAPj/AAAEAAUAAAACAPn/AAAEAAUAAAACAPr/AAAEAAUAAAACAPv/AAAEAAUAAAADAPb/AAAEAAUAAAADAPf/AAAEAAUAAAADAPj/AAAEAAUAAAADAPn/AAAEAAUAAAADAPr/AAAEAAUAAAADAPv/AAAEAAUAAAA=")
@@ -916,19 +917,17 @@ position = Vector2(53, -39)
 
 [node name="TreasureChest" parent="." instance=ExtResource("13_x00t5")]
 position = Vector2(-203, -196)
-chest_name = "chest3"
-
-[node name="TreasureChest4" parent="." instance=ExtResource("13_x00t5")]
-position = Vector2(-50, 11)
 chest_name = "chest1"
-
-[node name="TreasureChest5" parent="." instance=ExtResource("13_x00t5")]
-position = Vector2(42, 13)
-chest_name = "chest2"
 
 [node name="TreasureChest2" parent="." instance=ExtResource("13_x00t5")]
 position = Vector2(216, -119)
-chest_name = "chest4"
+chest_name = "chest2"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_r5l8u")
+volume_db = -7.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="PuzzleButton" to="LockedDoor" method="_on_puzzle_button_pressed"]
 [connection signal="unpressed" from="PuzzleButton" to="LockedDoor" method="_on_puzzle_button_unpressed"]
