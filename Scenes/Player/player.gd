@@ -16,6 +16,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if SceneManager.player_hp <= 0:
+		return
+	
 	if not is_attacking:
 		move_player()
 	
@@ -87,10 +90,20 @@ func _on_hitbox_area_2d_body_entered(body: Node2D) -> void:
 	
 	var knockback_strength: float = 200
 	velocity += knockback_direction * knockback_strength
+	
+	var flash_white_color: Color = Color(50, 50, 50)
+	modulate = flash_white_color
+	
+	await get_tree().create_timer(0.2).timeout
+	
+	var original_color: Color = Color(1, 1, 1)
+	modulate = original_color
 
 func die():
-	SceneManager.player_hp = 3
-	get_tree().call_deferred("reload_current_scene")
+	$AnimatedSprite2D.play("death")
+	
+	if $DeathTimer.is_stopped():
+		$DeathTimer.start()
 
 func update_hp_bar():
 	if SceneManager.player_hp >= 3:
@@ -104,26 +117,30 @@ func update_hp_bar():
 	
 
 func attack():
-	if is_attacking == false:
-		$Sword.visible = true
-		%SwordArea2D.monitoring = true
-		$AttackDurationTimer.start()
-		is_attacking = true
-		velocity = Vector2(0, 0)
+	if not $AttackDurationTimer.is_stopped():
+		return
+	
+	$Sword.visible = true
+	%SwordArea2D.monitoring = true
+	$AttackDurationTimer.start()
+	is_attacking = true
+	velocity = Vector2(0, 0)
+	
+	var player_animation: String = $AnimatedSprite2D.animation
+	if player_animation == "move_right":
+		$AnimatedSprite2D.play("attack_right")
+		$AnimationPlayer.play("attack_right")
+	elif player_animation == "move_left":
+		$AnimatedSprite2D.play("attack_left")
+		$AnimationPlayer.play("attack_left")
+	elif player_animation == "move_up":
+		$AnimatedSprite2D.play("attack_up")
+		$AnimationPlayer.play("attack_up")
+	elif player_animation == "move_down":
+		$AnimatedSprite2D.play("attack_down")
+		$AnimationPlayer.play("attack_down")
 		
-		var player_animation: String = $AnimatedSprite2D.animation
-		if player_animation == "move_right":
-			$AnimatedSprite2D.play("attack_right")
-			$AnimationPlayer.play("attack_right")
-		elif player_animation == "move_left":
-			$AnimatedSprite2D.play("attack_left")
-			$AnimationPlayer.play("attack_left")
-		elif player_animation == "move_up":
-			$AnimatedSprite2D.play("attack_up")
-			$AnimationPlayer.play("attack_up")
-		elif player_animation == "move_down":
-			$AnimatedSprite2D.play("attack_down")
-			$AnimationPlayer.play("attack_down")
+		
 
 func _on_sword_area_2d_body_entered(body: Node2D) -> void:
 	var distance_to_enemy: Vector2 = body.global_position - global_position
@@ -152,3 +169,8 @@ func _on_attack_duration_timer_timeout() -> void:
 		$AnimatedSprite2D.play("move_up")
 	elif player_animation == "attack_down":
 		$AnimatedSprite2D.play("move_down")
+
+
+func _on_death_timer_timeout() -> void:
+	SceneManager.player_hp = 3
+	get_tree().call_deferred("reload_current_scene")
