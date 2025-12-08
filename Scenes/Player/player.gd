@@ -6,6 +6,7 @@ class_name Player
 @export var acceleration: float = 10
 
 var is_attacking: bool = false
+var can_interact: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,7 +29,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	if Input.is_action_just_pressed("interact"):
+	if Input.is_action_just_pressed("interact") and not can_interact:
 		attack()
 
 func move_player():
@@ -72,10 +73,12 @@ func update_treasure_label():
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("interactable"):
+		can_interact = true
 		body.can_interact = true
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("interactable"):
+		can_interact = false
 		body.can_interact = false
 
 
@@ -90,6 +93,8 @@ func _on_hitbox_area_2d_body_entered(body: Node2D) -> void:
 	
 	var knockback_strength: float = 200
 	velocity += knockback_direction * knockback_strength
+	
+	$DamageSFX.play()
 	
 	var flash_white_color: Color = Color(50, 50, 50)
 	modulate = flash_white_color
@@ -120,6 +125,7 @@ func attack():
 	if not $AttackDurationTimer.is_stopped():
 		return
 	
+	$SwordSFX.play()
 	$Sword.visible = true
 	%SwordArea2D.monitoring = true
 	$AttackDurationTimer.start()
@@ -150,9 +156,7 @@ func _on_sword_area_2d_body_entered(body: Node2D) -> void:
 	
 	body.velocity += knockback_direction * knockback_strength
 	
-	body.HP -= 1
-	if body.HP <= 0:
-		body.queue_free()
+	body.take_damage()
 
 
 func _on_attack_duration_timer_timeout() -> void:

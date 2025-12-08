@@ -925,7 +925,7 @@ chest_name = "chest2"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_r5l8u")
-volume_db = -7.0
+volume_db = -10.0
 autoplay = true
 parameters/looping = true
 

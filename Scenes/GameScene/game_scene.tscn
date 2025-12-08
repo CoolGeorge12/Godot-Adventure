@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://bvvgbvq1cy88m"]
+[gd_scene load_steps=28 format=4 uid="uid://bvvgbvq1cy88m"]
 
 [ext_resource type="PackedScene" uid="uid://csh7yqycjeuqm" path="res://Scenes/Player/player.tscn" id="1_2p8i2"]
 [ext_resource type="Texture2D" uid="uid://c7fud4ftwv62a" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetFloor.png" id="1_l6yvh"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://egu74xbpt2jg" path="res://Ninja Adventure - Asset Pack/Actor/Characters/NinjaMageBlack/SpriteSheet.png" id="10_njm7v"]
 [ext_resource type="Texture2D" uid="uid://wgir12je5eqc" path="res://Ninja Adventure - Asset Pack/Actor/Characters/NinjaMageBlack/Faceset.png" id="11_bkvnf"]
 [ext_resource type="PackedScene" uid="uid://dn3c2irpxgk6u" path="res://Scenes/Enemies/slime_enemy.tscn" id="12_rpdpv"]
+[ext_resource type="PackedScene" uid="uid://bc6hivy576woy" path="res://Scenes/TreasureChest/treasure_chest.tscn" id="13_6dkqd"]
 [ext_resource type="AudioStream" uid="uid://c3tuxe1bu7mk6" path="res://Ninja Adventure - Asset Pack/Musics/11 - Clearing.ogg" id="14_bkvnf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_04h35"]
@@ -879,6 +880,39 @@ text = "Dark Ninja"
 [node name="SlimeEnemy" parent="ObstacleLayer" instance=ExtResource("12_rpdpv")]
 position = Vector2(1, -179)
 
+[node name="SlimeEnemy2" parent="ObstacleLayer" instance=ExtResource("12_rpdpv")]
+position = Vector2(109, -363)
+
+[node name="SlimeEnemy3" parent="ObstacleLayer" instance=ExtResource("12_rpdpv")]
+position = Vector2(158, -404)
+
+[node name="SlimeEnemy4" parent="ObstacleLayer" instance=ExtResource("12_rpdpv")]
+position = Vector2(91, -410)
+
+[node name="SlimeEnemy5" parent="ObstacleLayer" instance=ExtResource("12_rpdpv")]
+position = Vector2(466, 74)
+
+[node name="SlimeEnemy6" parent="ObstacleLayer" instance=ExtResource("12_rpdpv")]
+position = Vector2(465, 143)
+
+[node name="SlimeEnemy7" parent="ObstacleLayer" instance=ExtResource("12_rpdpv")]
+position = Vector2(-578, 102)
+
+[node name="SlimeEnemy8" parent="ObstacleLayer" instance=ExtResource("12_rpdpv")]
+position = Vector2(-573, -9)
+
+[node name="TreasureChest" parent="ObstacleLayer" instance=ExtResource("13_6dkqd")]
+position = Vector2(116, -385)
+chest_name = "chest4"
+
+[node name="TreasureChest3" parent="ObstacleLayer" instance=ExtResource("13_6dkqd")]
+position = Vector2(-585, 51)
+chest_name = "chest5"
+
+[node name="TreasureChest2" parent="ObstacleLayer" instance=ExtResource("13_6dkqd")]
+position = Vector2(457, 104)
+chest_name = "chest6"
+
 [node name="LockedDoor" parent="." instance=ExtResource("6_elpgg")]
 position = Vector2(328, 14)
 
@@ -911,7 +945,7 @@ shape = SubResource("RectangleShape2D_dc78n")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("14_bkvnf")
-volume_db = -7.0
+volume_db = -10.0
 autoplay = true
 parameters/looping = true
 
